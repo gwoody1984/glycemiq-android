@@ -34,7 +34,20 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="27" />
-
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.eveningoutpost.dexdrip.Sensor,
+                           com.eveningoutpost.dexdrip.Models.ActiveBluetoothDevice,
+                           com.eveningoutpost.dexdrip.Models.BgReading,
+                           com.eveningoutpost.dexdrip.Models.Calibration,
+                           com.eveningoutpost.dexdrip.Models.CalibrationRequest,
+                           com.eveningoutpost.dexdrip.Models.TransmitterData,
+                           com.eveningoutpost.dexdrip.Models.User,
+                           com.eveningoutpost.dexdrip.Models.UserNotification,
+                           com.eveningoutpost.dexdrip.ShareModels.ShareGlucose,
+                           com.eveningoutpost.dexdrip.UtilityModels.BgSendQueue,
+                           com.eveningoutpost.dexdrip.UtilityModels.CalibrationSendQueue,
+                           com.eveningoutpost.dexdrip.UtilityModels.SensorSendQueue" />
         <provider
             android:name="com.activeandroid.content.ContentProvider"
             android:authorities="com.example"

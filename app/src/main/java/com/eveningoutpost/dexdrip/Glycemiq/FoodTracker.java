@@ -20,17 +20,22 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.eveningoutpost.dexdrip.Glycemiq.Models.Food;
+import com.eveningoutpost.dexdrip.Glycemiq.Models.FoodAdapter;
 import com.eveningoutpost.dexdrip.NavigationDrawerFragment;
 import com.eveningoutpost.dexdrip.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FoodTracker extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private ListAdapter mAdapter;
     private ListView mFoodList;
+
+    private static FoodAdapter adapter;
+    private ArrayList<Food> data;
+
     private String menu_name = "Food Tracker";
-    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +45,15 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), menu_name, this);
 
-        final EditText foodText = (EditText) findViewById(R.id.food_description);
+        final EditText foodText = (EditText) findViewById(R.id.food_enter_description);
 
         mFoodList = (ListView) findViewById(R.id.food_list);
-        String[] columnNames = new String[]{BaseColumns._ID, "Title", "Subtext"};
-        final MatrixCursor cursor = new MatrixCursor(columnNames);
-        cursor.addRow(new String[]{String.valueOf(counter), "First", "Second"});
-        counter++;
 
-        createListView(cursor);
+        data = new ArrayList<>();
+        data.add(new Food(.5, "c", "Black Beans", 25, 15, 1, "09:05 AM"));
+
+        adapter = new FoodAdapter(data, getApplicationContext());
+        mFoodList.setAdapter(adapter);
 
         final Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -56,27 +61,12 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
             public void onClick(View v) {
                 String food = foodText.getText().toString().trim();
                 if (!TextUtils.isEmpty(food)) {
-                    cursor.addRow(new String[]{String.valueOf(counter), food, new StringBuffer(food).reverse().toString()});
-                    createListView(cursor);
-                    foodText.setText("");
+                    long now = (new Date()).getTime();
 
-                    counter++;
+                    foodText.setText("");
                 }
             }
         });
-    }
-
-    private void createListView(Cursor cursor) {
-        String[] columnNames = new String[]{BaseColumns._ID, "Title", "Subtext"};
-        mAdapter = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_2,
-                cursor,
-                columnNames,
-                new int[]{0, android.R.id.text1, android.R.id.text2},
-                0);
-
-        mFoodList.setAdapter(mAdapter);
     }
 
     @Override

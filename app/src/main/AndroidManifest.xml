@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eveningoutpost.dexdrip" >
+    package="com.eveningoutpost.dexdrip">
 
     <permission android:name="com.eveningoutpost.dexdrip.permissions.RECEIVE_BG_ESTIMATE" />
 
@@ -27,7 +27,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="AA_DB_NAME"
             android:value="DexDrip.db" />
@@ -36,18 +36,8 @@
             android:value="27" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.eveningoutpost.dexdrip.Sensor,
-                           com.eveningoutpost.dexdrip.Models.ActiveBluetoothDevice,
-                           com.eveningoutpost.dexdrip.Models.BgReading,
-                           com.eveningoutpost.dexdrip.Models.Calibration,
-                           com.eveningoutpost.dexdrip.Models.CalibrationRequest,
-                           com.eveningoutpost.dexdrip.Models.TransmitterData,
-                           com.eveningoutpost.dexdrip.Models.User,
-                           com.eveningoutpost.dexdrip.Models.UserNotification,
-                           com.eveningoutpost.dexdrip.ShareModels.ShareGlucose,
-                           com.eveningoutpost.dexdrip.UtilityModels.BgSendQueue,
-                           com.eveningoutpost.dexdrip.UtilityModels.CalibrationSendQueue,
-                           com.eveningoutpost.dexdrip.UtilityModels.SensorSendQueue" />
+            android:value="com.eveningoutpost.dexdrip.Sensor,                            com.eveningoutpost.dexdrip.Models.ActiveBluetoothDevice,                            com.eveningoutpost.dexdrip.Models.BgReading,                            com.eveningoutpost.dexdrip.Models.Calibration,                            com.eveningoutpost.dexdrip.Models.CalibrationRequest,                            com.eveningoutpost.dexdrip.Models.TransmitterData,                            com.eveningoutpost.dexdrip.Models.User,                            com.eveningoutpost.dexdrip.Models.UserNotification,                            com.eveningoutpost.dexdrip.ShareModels.ShareGlucose,                            com.eveningoutpost.dexdrip.UtilityModels.BgSendQueue,                            com.eveningoutpost.dexdrip.UtilityModels.CalibrationSendQueue,                            com.eveningoutpost.dexdrip.UtilityModels.SensorSendQueue" />
+
         <provider
             android:name="com.activeandroid.content.ContentProvider"
             android:authorities="com.example"
@@ -56,45 +46,42 @@
         <activity
             android:name=".Home"
             android:label="@string/app_name"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".BluetoothScan"
-            android:label="@string/title_activity_bluetooth_scan" >
-        </activity>
+            android:label="@string/title_activity_bluetooth_scan"></activity>
 
         <service
             android:name=".Services.DexCollectionService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
         <activity
             android:name=".Tables.BgReadingTable"
-            android:label="Bg Readings Table" >
-        </activity>
+            android:label="Bg Readings Table"></activity>
         <activity
             android:name=".Tables.SensorDataTable"
-            android:label="Sensor Table" >
-        </activity>
+            android:label="Sensor Table"></activity>
+        <activity
+            android:name=".Glycemiq.FoodTracker"
+            android:label="Food Tracker"></activity>
         <activity
             android:name=".AddCalibration"
-            android:label="@string/title_activity_add_calibration" >
-        </activity>
+            android:label="@string/title_activity_add_calibration"></activity>
         <activity
             android:name=".StartNewSensor"
-            android:label="@string/title_activity_start_new_sensor" >
-        </activity>
+            android:label="@string/title_activity_start_new_sensor"></activity>
         <activity
             android:name=".StopSensor"
-            android:label="@string/title_activity_stop_sensor" >
-        </activity>
+            android:label="@string/title_activity_stop_sensor"></activity>
 
-        <receiver android:name=".AutoStart" >
+        <receiver android:name=".AutoStart">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -102,51 +89,41 @@
 
         <activity
             android:name=".Tables.CalibrationDataTable"
-            android:label="@string/title_activity_calibration_data_table" >
-        </activity>
+            android:label="@string/title_activity_calibration_data_table"></activity>
 
         <service
             android:name=".Services.SyncService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
         <service
             android:name=".ImportedLibraries.dexcom.SyncingService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
         <activity
             android:name=".FakeNumbers"
-            android:label="@string/title_activity_fake_numbers" >
-        </activity>
+            android:label="@string/title_activity_fake_numbers"></activity>
         <activity
             android:name=".DoubleCalibrationActivity"
-            android:label="@string/title_activity_double_calibration" >
-        </activity>
+            android:label="@string/title_activity_double_calibration"></activity>
         <activity
             android:name=".CalibrationOverride"
-            android:label="@string/title_activity_calibration_override" >
-        </activity>
+            android:label="@string/title_activity_calibration_override"></activity>
         <activity
             android:name=".CalibrationGraph"
-            android:label="@string/title_activity_calibration_graph" >
-        </activity>
+            android:label="@string/title_activity_calibration_graph"></activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="Settings" >
-        </activity>
+            android:label="Settings"></activity>
         <activity
             android:name=".LicenseAgreementActivity"
-            android:label="@string/title_activity_license_agreement" >
-        </activity>
+            android:label="@string/title_activity_license_agreement"></activity>
         <activity
             android:name=".CalibrationCheckInActivity"
-            android:label="@string/title_activity_calibration_check_in" >
-        </activity>
+            android:label="@string/title_activity_calibration_check_in"></activity>
         <activity
             android:name=".UsbConnectedActivity"
-            android:label="@string/title_activity_usb_connected" >
+            android:label="@string/title_activity_usb_connected">
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -159,23 +136,19 @@
         <service
             android:name=".Services.DexShareCollectionService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
         <activity
             android:name=".ShareTest"
-            android:label="@string/title_activity_share_test" >
-        </activity>
+            android:label="@string/title_activity_share_test"></activity>
         <activity
             android:name=".SystemStatus"
-            android:label="@string/title_activity_system_status" >
-        </activity>
+            android:label="@string/title_activity_system_status"></activity>
         <activity
             android:name=".utils.Preferences"
-            android:label="@string/title_activity_preferences" >
-        </activity>
+            android:label="@string/title_activity_preferences"></activity>
 
-        <receiver android:name=".xDripWidget" >
+        <receiver android:name=".xDripWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -188,11 +161,13 @@
         <service
             android:name=".widgetUpdateService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="193dbc121e25e5f3e71bb98164ec074378e339df" />
+
+
     </application>
 
 </manifest>

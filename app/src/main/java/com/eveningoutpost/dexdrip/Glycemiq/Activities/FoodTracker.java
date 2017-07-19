@@ -36,7 +36,6 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
         mFoodList = (ListView) findViewById(R.id.food_list);
 
         data = new ArrayList<>();
-        data.add(new Food(.5, "c", "Black Beans", 25, 15, 1, "09:05 AM"));
 
         adapter = new FoodAdapter(data, getApplicationContext());
         mFoodList.setAdapter(adapter);
@@ -48,7 +47,7 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
                 String food = foodText.getText().toString().trim();
                 if (!TextUtils.isEmpty(food)) {
                     FoodApiClient client = new FoodApiClient();
-                    client.getFood(food, adapter, getApplicationContext());
+                    client.searchFood(food, adapter);
                     foodText.setText("");
                 }
             }

@@ -13,6 +13,7 @@ import com.eveningoutpost.dexdrip.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -66,12 +67,14 @@ public class FoodAdapter extends ArrayAdapter<Food> {
             result = convertView;
         }
 
-        String description = String.format("%s%s %s", food.quantity, food.measurement, food.description);
+        String description = String.format("%s %s %s", food.quantity, food.measurement, food.description);
         viewHolder.txtFoodDescription.setText(description);
         viewHolder.txtTimestamp.setText(food.timestamp);
-        viewHolder.txtCarbs.setText(String.valueOf(food.carbs));
-        viewHolder.txtProteins.setText(String.valueOf(food.proteins));
-        viewHolder.txtFats.setText(String.valueOf(food.fats));
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        viewHolder.txtCarbs.setText(df.format(food.carbs));
+        viewHolder.txtProteins.setText(df.format(food.proteins));
+        viewHolder.txtFats.setText(df.format(food.fats));
 
         return convertView;
     }

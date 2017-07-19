@@ -81,7 +81,7 @@
             android:name=".Tables.SensorDataTable"
             android:label="Sensor Table"></activity>
         <activity
-            android:name=".Glycemiq.FoodTracker"
+            android:name=".Glycemiq.Activities.FoodTracker"
             android:label="Food Tracker"></activity>
         <activity
             android:name=".AddCalibration"

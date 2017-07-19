@@ -23,19 +23,19 @@ public class Food extends Model {
     public String description;
 
     @Column(name="carbs")
-    public int carbs;
+    public double carbs;
 
     @Column(name="proteins")
-    public int proteins;
+    public double proteins;
 
     @Column(name="fats")
-    public int fats;
+    public double fats;
 
     @Column(name="timestamp")
     public String timestamp;
 
-    public Food(double quantity, String measurement, String description, int carbs, int proteins,
-                int fats, String timestamp){
+    public Food(double quantity, String measurement, String description, double carbs, double proteins,
+                double fats, String timestamp){
         this.quantity = quantity;
         this.measurement = measurement;
         this.description = description;

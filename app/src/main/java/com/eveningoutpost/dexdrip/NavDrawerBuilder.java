@@ -3,10 +3,9 @@ package com.eveningoutpost.dexdrip;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 
-import com.eveningoutpost.dexdrip.Glycemiq.FoodTracker;
+import com.eveningoutpost.dexdrip.Glycemiq.Activities.FoodTracker;
 import com.eveningoutpost.dexdrip.Models.BgReading;
 import com.eveningoutpost.dexdrip.Models.Calibration;
 import com.eveningoutpost.dexdrip.Tables.BgReadingTable;

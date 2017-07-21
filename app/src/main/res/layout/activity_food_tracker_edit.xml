@@ -9,18 +9,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eveningoutpost.dexdrip.Glycemiq.Activities.FoodTrackerEdit">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
     <TextView
+        android:id="@+id/edit_food_created"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/edit_text_size"
+        android:layout_marginEnd="5dp"
+        android:text="Not Set"
+        android:layout_weight="0.99"/>
+
+    <Button
+        android:id="@+id/edit_food_created_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Set Date"
+        android:textSize="@dimen/edit_text_size"/>
+
+    </LinearLayout>
+
+
+    <EditText
         android:id="@+id/edit_food_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Food Name Placeholder"
-        android:textSize="20dp" />
+        android:textSize="@dimen/edit_text_size" />
 
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:background="#8b8b8b" />
+    <!--<View-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="2dip"-->
+        <!--android:background="#8b8b8b" />-->
 
 
 </LinearLayout>

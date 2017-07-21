@@ -18,6 +18,7 @@ import com.eveningoutpost.dexdrip.Glycemiq.Models.FoodAdapter;
 import com.eveningoutpost.dexdrip.NavigationDrawerFragment;
 import com.eveningoutpost.dexdrip.R;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 
@@ -64,7 +65,12 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Food food = (Food) mFoodList.getItemAtPosition(position);
-                String foodString = "";
+
+                GsonBuilder builder = new GsonBuilder();
+                builder.excludeFieldsWithoutExposeAnnotation();
+                Gson gson = builder.create();
+
+                String foodString = gson.toJson(food);
 
                 Log.d(TAG, foodString);
 

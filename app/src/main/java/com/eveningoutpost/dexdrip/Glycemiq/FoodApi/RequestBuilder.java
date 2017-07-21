@@ -15,18 +15,11 @@
  */
 package com.eveningoutpost.dexdrip.Glycemiq.FoodApi;
 
-import com.fatsecret.platform.services.Base64;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * This class helps in building requests for sending them to the Edamam rest api

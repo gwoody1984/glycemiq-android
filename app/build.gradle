@@ -12,6 +12,7 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://jitpack.io'}
 }
 
 
@@ -42,7 +43,6 @@ dependencies {
     compile 'com.getpebble:pebblekit:2.6.0@aar'
     compile 'io.reactivex:rxjava:1.0.0'
     compile 'ch.acra:acra:4.5.0'
-    compile 'com.fatsecret4j:fatsecret-platform:2.0'
-    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.github.jjobes:SlideDateTimePicker:v1.0.4'
     testCompile 'com.squareup.okhttp:mockwebserver:2.2.0'
 }

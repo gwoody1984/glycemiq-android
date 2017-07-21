@@ -84,6 +84,9 @@
             android:name=".Glycemiq.Activities.FoodTracker"
             android:label="Food Tracker"></activity>
         <activity
+            android:name=".Glycemiq.Activities.FoodTrackerEdit"
+            android:label="Edit Food"></activity>
+        <activity
             android:name=".AddCalibration"
             android:label="@string/title_activity_add_calibration"></activity>
         <activity

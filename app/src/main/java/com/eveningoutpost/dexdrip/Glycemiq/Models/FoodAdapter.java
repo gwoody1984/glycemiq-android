@@ -1,8 +1,6 @@
 package com.eveningoutpost.dexdrip.Glycemiq.Models;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +9,11 @@ import android.widget.TextView;
 
 import com.eveningoutpost.dexdrip.R;
 
-import org.w3c.dom.Text;
-
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Greg on 7/18/2017.
@@ -46,8 +45,6 @@ public class FoodAdapter extends ArrayAdapter<Food> {
 
         ViewHolder viewHolder;
 
-        final View result;
-
         if (convertView == null) {
 
             viewHolder = new ViewHolder();
@@ -59,22 +56,22 @@ public class FoodAdapter extends ArrayAdapter<Food> {
             viewHolder.txtProteins = (TextView) convertView.findViewById(R.id.food_proteins);
             viewHolder.txtFats = (TextView) convertView.findViewById(R.id.food_fats);
 
-            result = convertView;
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
         }
 
-        String description = String.format("%s %s %s", food.quantity, food.measurement, food.description);
+        String description = String.format("%s %s %s", food.quantity, food.measurement, food.name);
         viewHolder.txtFoodDescription.setText(description);
-        viewHolder.txtTimestamp.setText(food.timestamp);
+
+        DateFormat format = new SimpleDateFormat("hh:mm a");
+        String timestamp = format.format(new Date(food.created));
+        viewHolder.txtTimestamp.setText(timestamp);
 
         DecimalFormat df = new DecimalFormat("#.##");
         viewHolder.txtCarbs.setText(df.format(food.carbs));
-        viewHolder.txtProteins.setText(df.format(food.proteins));
-        viewHolder.txtFats.setText(df.format(food.fats));
+        viewHolder.txtProteins.setText(df.format(food.protein));
+        viewHolder.txtFats.setText(df.format(food.totalFat));
 
         return convertView;
     }

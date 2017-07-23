@@ -35,6 +35,8 @@
     <string name="action_example">Example action</string>
     <string name="title_activity_calibration_check_in">CalibrationCheckInActivity</string>
     <string name="title_activity_usb_connected">UsbConnectedActivity</string>
+    <string name="title_save_food">Save Food</string>
+    <string name="title_delete_food">Delete Food</string>
 
     <string-array name="menu_options">
         <item>Dex Drip</item>

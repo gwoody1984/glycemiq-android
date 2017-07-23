@@ -66,14 +66,15 @@ public class FoodApiClient {
                         Nutrients nutrients = parsed.getNutrients();
 
                         Food foodToAdd = new Food();
-                        foodToAdd.setNutrients(nutrients);
                         foodToAdd.created = System.currentTimeMillis();
                         foodToAdd.quantity = parsed.getQuantity();
                         foodToAdd.measurement = parsed.getMeasure();
                         foodToAdd.name = parsed.getFoodMatch();
                         foodToAdd.description = parsed.getFood();
                         foodToAdd.glycemicIndex = food.getGlycemicIndex();
+                        foodToAdd.calories = food.getCalories();
 
+                        foodToAdd.setNutrients(nutrients);
                         foodToAdd.save();
 
                         mHandler.post(new UpdateAdapter(foodToAdd, adapter));

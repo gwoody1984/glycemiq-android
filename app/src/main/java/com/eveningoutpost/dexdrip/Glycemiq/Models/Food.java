@@ -1,8 +1,11 @@
 package com.eveningoutpost.dexdrip.Glycemiq.Models;
 
+import android.databinding.BindingAdapter;
+import android.databinding.InverseBindingAdapter;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
+import android.widget.TextView;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
@@ -11,6 +14,7 @@ import com.activeandroid.query.Select;
 import com.eveningoutpost.dexdrip.Glycemiq.Utils.DateUtils;
 import com.google.gson.annotations.Expose;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -263,17 +267,6 @@ public class Food extends Model {
         return arrayList;
     }
 
-    // TODO: this should be exposed by id but due to Gson limitation lookup is by created date
-    public static Food getByCreated(Long createdDate)
-    {
-        Food food = new Select()
-                .from(Food.class)
-                .where("created=?", createdDate)
-                .executeSingle();
-
-        return food;
-    }
-
     public void setNutrients(Nutrients nutrients) {
         if (nutrients != null) {
             ENERCKCAL calorie = nutrients.getENERCKCAL();
@@ -425,5 +418,16 @@ public class Food extends Model {
                 this.polyunsaturatedFatUnit = fapu.getUnit();
             }
         }
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, double value) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        view.setText(df.format(value));
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static double getText(TextView view) {
+        return Double.parseDouble(view.getText().toString());
     }
 }

@@ -1,52 +1,944 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eveningoutpost.dexdrip.Glycemiq.Activities.FoodTrackerEdit">
+<layout>
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="food"
+            type="com.eveningoutpost.dexdrip.Glycemiq.Models.Food" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.eveningoutpost.dexdrip.Glycemiq.Activities.FoodTrackerEdit">
 
-    <TextView
-        android:id="@+id/edit_food_created"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/edit_text_size"
-        android:layout_marginEnd="5dp"
-        android:text="Not Set"
-        android:layout_weight="0.99"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
-    <Button
-        android:id="@+id/edit_food_created_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="Set Date"
-        android:textSize="@dimen/edit_text_size"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
+            <TextView
+                android:id="@+id/edit_food_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/edit_food_created_button"
+                android:layout_marginEnd="5dp"
+                android:text="Not Set" />
+
+            <Button
+                android:id="@+id/edit_food_created_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/edit_food_created"
+                android:text="Set Date" />
+
+            <EditText
+                android:id="@+id/edit_food_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_created_button"
+                android:layout_marginEnd="5dp"
+                android:hint="Qty"
+                android:text="@={food.quantity}" />
+
+            <EditText
+                android:id="@+id/edit_food_measurement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_created_button"
+                android:layout_toEndOf="@+id/edit_food_quantity"
+                android:hint="Measurement (cup, tsp, etc)"
+                android:text="@={food.measurement}" />
+
+            <TextView
+                android:id="@+id/food_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_quantity"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Name: " />
+
+            <EditText
+                android:id="@+id/edit_food_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/food_name_label"
+                android:layout_below="@+id/edit_food_quantity"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/food_name_label"
+                android:hint="Food Name"
+                android:text="@={food.name}" />
+
+            <TextView
+                android:id="@+id/food_description_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_name"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Description: " />
+
+            <EditText
+                android:id="@+id/edit_food_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/food_description_label"
+                android:layout_below="@+id/edit_food_name"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/food_description_label"
+                android:hint="Food Description"
+                android:text="@={food.description}" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/food_glycemicIndex_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_description"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Glycemic Index: " />-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_glycemicIndex"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignBaseline="@+id/food_glycemicIndex_label"-->
+                <!--android:layout_below="@+id/edit_food_description"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_toEndOf="@+id/food_glycemicIndex_label"-->
+                <!--android:hint="Glycemic Index"-->
+                <!--android:text="@={food.glycemicIndex}" />-->
+
+            <TextView
+                android:id="@+id/food_calories_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_description"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Calories: " />
+
+            <EditText
+                android:id="@+id/edit_food_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/food_calories_label"
+                android:layout_below="@+id/edit_food_description"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/food_calories_label"
+                android:hint="Calories"
+                android:text="@={food.calories}" />
+
+            <TextView
+                android:id="@+id/food_carbs_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_calories"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Carbs: " />
+
+            <EditText
+                android:id="@+id/edit_food_carbs"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/food_carbs_label"
+                android:layout_below="@+id/edit_food_calories"
+                android:layout_toEndOf="@+id/food_carbs_label"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="1"
+                android:hint="Carbs"
+                android:text="@={food.carbs}" />
+
+            <EditText
+                android:id="@+id/edit_food_carbsUnit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/edit_food_carbs"
+                android:layout_below="@+id/edit_food_calories"
+                android:layout_toEndOf="@+id/edit_food_carbs"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:hint="Carbs Units"
+                android:text="@={food.carbsUnit}"/>
+            <TextView
+                android:id="@+id/food_protein_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_carbs"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Protein: "/>
+
+            <EditText
+                android:id="@+id/edit_food_protein"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_carbs"
+                android:layout_toEndOf="@+id/food_protein_label"
+                android:layout_alignBaseline="@+id/food_protein_label"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="1"
+                android:hint="Protein"
+                android:text="@={food.protein}"/>
+
+            <EditText
+                android:id="@+id/edit_food_proteinUnit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_carbs"
+                android:layout_toEndOf="@+id/edit_food_protein"
+                android:layout_alignBaseline="@+id/food_protein_label"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:hint="Protein Units"
+                android:text="@={food.proteinUnit}"/>
+            <TextView
+                android:id="@+id/food_totalFat_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_protein"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Total Fat: "/>
+
+            <EditText
+                android:id="@+id/edit_food_totalFat"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_protein"
+                android:layout_toEndOf="@+id/food_totalFat_label"
+                android:layout_alignBaseline="@+id/food_totalFat_label"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="1"
+                android:hint="Total Fat"
+                android:text="@={food.totalFat}"/>
+
+            <EditText
+                android:id="@+id/edit_food_totalFatUnit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_protein"
+                android:layout_toEndOf="@+id/edit_food_totalFat"
+                android:layout_alignBaseline="@+id/food_totalFat_label"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:hint="Total Fat Units"
+                android:text="@={food.totalFatUnit}"/>
+            <TextView
+                android:id="@+id/food_sugar_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_totalFat"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Sugar: "/>
+
+            <EditText
+                android:id="@+id/edit_food_sugar"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_totalFat"
+                android:layout_toEndOf="@+id/food_sugar_label"
+                android:layout_alignBaseline="@+id/food_sugar_label"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="1"
+                android:hint="Sugar"
+                android:text="@={food.sugar}"/>
+
+            <EditText
+                android:id="@+id/edit_food_sugarUnit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_totalFat"
+                android:layout_toEndOf="@+id/edit_food_sugar"
+                android:layout_alignBaseline="@+id/food_sugar_label"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:hint="Sugar Units"
+                android:text="@={food.sugarUnit}"/>
+            <TextView
+                android:id="@+id/food_fiber_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_sugar"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Fiber: "/>
+
+            <EditText
+                android:id="@+id/edit_food_fiber"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_sugar"
+                android:layout_toEndOf="@+id/food_fiber_label"
+                android:layout_alignBaseline="@+id/food_fiber_label"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="1"
+                android:hint="Fiber"
+                android:text="@={food.fiber}"/>
+
+            <EditText
+                android:id="@+id/edit_food_fiberUnit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_food_sugar"
+                android:layout_toEndOf="@+id/edit_food_fiber"
+                android:layout_alignBaseline="@+id/food_fiber_label"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:hint="Fiber Units"
+                android:text="@={food.fiberUnit}"/>
+            <!--<TextView-->
+                <!--android:id="@+id/food_calcium_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_fiber"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Calcium: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_calcium"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_fiber"-->
+                <!--android:layout_toEndOf="@+id/food_calcium_label"-->
+                <!--android:layout_alignBaseline="@+id/food_calcium_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Calcium"-->
+                <!--android:text="@={food.calcium}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_calciumUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_fiber"-->
+                <!--android:layout_toEndOf="@+id/edit_food_calcium"-->
+                <!--android:layout_alignBaseline="@+id/food_calcium_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Calcium Units"-->
+                <!--android:text="@={food.calciumUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_iron_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_calcium"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Iron: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_iron"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_calcium"-->
+                <!--android:layout_toEndOf="@+id/food_iron_label"-->
+                <!--android:layout_alignBaseline="@+id/food_iron_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Iron"-->
+                <!--android:text="@={food.iron}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_ironUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_calcium"-->
+                <!--android:layout_toEndOf="@+id/edit_food_iron"-->
+                <!--android:layout_alignBaseline="@+id/food_iron_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Iron Units"-->
+                <!--android:text="@={food.ironUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_magnesium_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_iron"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Magnesium: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_magnesium"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_iron"-->
+                <!--android:layout_toEndOf="@+id/food_magnesium_label"-->
+                <!--android:layout_alignBaseline="@+id/food_magnesium_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Magnesium"-->
+                <!--android:text="@={food.magnesium}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_magnesiumUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_iron"-->
+                <!--android:layout_toEndOf="@+id/edit_food_magnesium"-->
+                <!--android:layout_alignBaseline="@+id/food_magnesium_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Magnesium Units"-->
+                <!--android:text="@={food.magnesiumUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_phosphorus_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_magnesium"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Phosphorus: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_phosphorus"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_magnesium"-->
+                <!--android:layout_toEndOf="@+id/food_phosphorus_label"-->
+                <!--android:layout_alignBaseline="@+id/food_phosphorus_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Phosphorus"-->
+                <!--android:text="@={food.phosphorus}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_phosphorusUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_magnesium"-->
+                <!--android:layout_toEndOf="@+id/edit_food_phosphorus"-->
+                <!--android:layout_alignBaseline="@+id/food_phosphorus_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Phosphorus Units"-->
+                <!--android:text="@={food.phosphorusUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_potassium_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_phosphorus"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Potassium: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_potassium"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_phosphorus"-->
+                <!--android:layout_toEndOf="@+id/food_potassium_label"-->
+                <!--android:layout_alignBaseline="@+id/food_potassium_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Potassium"-->
+                <!--android:text="@={food.potassium}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_potassiumUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_phosphorus"-->
+                <!--android:layout_toEndOf="@+id/edit_food_potassium"-->
+                <!--android:layout_alignBaseline="@+id/food_potassium_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Potassium Units"-->
+                <!--android:text="@={food.potassiumUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_sodium_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_potassium"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Sodium: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_sodium"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_potassium"-->
+                <!--android:layout_toEndOf="@+id/food_sodium_label"-->
+                <!--android:layout_alignBaseline="@+id/food_sodium_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Sodium"-->
+                <!--android:text="@={food.sodium}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_sodiumUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_potassium"-->
+                <!--android:layout_toEndOf="@+id/edit_food_sodium"-->
+                <!--android:layout_alignBaseline="@+id/food_sodium_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Sodium Units"-->
+                <!--android:text="@={food.sodiumUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_zinc_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_sodium"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Zinc: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_zinc"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_sodium"-->
+                <!--android:layout_toEndOf="@+id/food_zinc_label"-->
+                <!--android:layout_alignBaseline="@+id/food_zinc_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Zinc"-->
+                <!--android:text="@={food.zinc}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_zincUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_sodium"-->
+                <!--android:layout_toEndOf="@+id/edit_food_zinc"-->
+                <!--android:layout_alignBaseline="@+id/food_zinc_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Zinc Units"-->
+                <!--android:text="@={food.zincUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_vitaminA_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_zinc"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vitamina: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminA"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_zinc"-->
+                <!--android:layout_toEndOf="@+id/food_vitaminA_label"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminA_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Vitamina"-->
+                <!--android:text="@={food.vitaminA}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminAUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_zinc"-->
+                <!--android:layout_toEndOf="@+id/edit_food_vitaminA"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminA_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Vitamina Units"-->
+                <!--android:text="@={food.vitaminAUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_vitaminE_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminA"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vitamine: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminE"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminA"-->
+                <!--android:layout_toEndOf="@+id/food_vitaminE_label"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminE_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Vitamine"-->
+                <!--android:text="@={food.vitaminE}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminEUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminA"-->
+                <!--android:layout_toEndOf="@+id/edit_food_vitaminE"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminE_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Vitamine Units"-->
+                <!--android:text="@={food.vitaminEUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_vitaminC_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminE"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vitaminc: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminC"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminE"-->
+                <!--android:layout_toEndOf="@+id/food_vitaminC_label"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminC_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Vitaminc"-->
+                <!--android:text="@={food.vitaminC}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminCUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminE"-->
+                <!--android:layout_toEndOf="@+id/edit_food_vitaminC"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminC_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Vitaminc Units"-->
+                <!--android:text="@={food.vitaminCUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_vitaminB6_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminC"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vitaminb6: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminB6"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminC"-->
+                <!--android:layout_toEndOf="@+id/food_vitaminB6_label"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminB6_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Vitaminb6"-->
+                <!--android:text="@={food.vitaminB6}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminB6Unit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminC"-->
+                <!--android:layout_toEndOf="@+id/edit_food_vitaminB6"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminB6_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Vitaminb6 Units"-->
+                <!--android:text="@={food.vitaminB6Unit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_vitaminK_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminB6"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vitamink: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminK"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminB6"-->
+                <!--android:layout_toEndOf="@+id/food_vitaminK_label"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminK_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Vitamink"-->
+                <!--android:text="@={food.vitaminK}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_vitaminKUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminB6"-->
+                <!--android:layout_toEndOf="@+id/edit_food_vitaminK"-->
+                <!--android:layout_alignBaseline="@+id/food_vitaminK_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Vitamink Units"-->
+                <!--android:text="@={food.vitaminKUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_thiamin_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminK"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Thiamin: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_thiamin"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminK"-->
+                <!--android:layout_toEndOf="@+id/food_thiamin_label"-->
+                <!--android:layout_alignBaseline="@+id/food_thiamin_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Thiamin"-->
+                <!--android:text="@={food.thiamin}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_thiaminUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_vitaminK"-->
+                <!--android:layout_toEndOf="@+id/edit_food_thiamin"-->
+                <!--android:layout_alignBaseline="@+id/food_thiamin_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Thiamin Units"-->
+                <!--android:text="@={food.thiaminUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_riboflavin_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_thiamin"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Riboflavin: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_riboflavin"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_thiamin"-->
+                <!--android:layout_toEndOf="@+id/food_riboflavin_label"-->
+                <!--android:layout_alignBaseline="@+id/food_riboflavin_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Riboflavin"-->
+                <!--android:text="@={food.riboflavin}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_riboflavinUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_thiamin"-->
+                <!--android:layout_toEndOf="@+id/edit_food_riboflavin"-->
+                <!--android:layout_alignBaseline="@+id/food_riboflavin_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Riboflavin Units"-->
+                <!--android:text="@={food.riboflavinUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_niacin_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_riboflavin"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Niacin: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_niacin"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_riboflavin"-->
+                <!--android:layout_toEndOf="@+id/food_niacin_label"-->
+                <!--android:layout_alignBaseline="@+id/food_niacin_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Niacin"-->
+                <!--android:text="@={food.niacin}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_niacinUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_riboflavin"-->
+                <!--android:layout_toEndOf="@+id/edit_food_niacin"-->
+                <!--android:layout_alignBaseline="@+id/food_niacin_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Niacin Units"-->
+                <!--android:text="@={food.niacinUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_folate_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_niacin"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Folate: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_folate"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_niacin"-->
+                <!--android:layout_toEndOf="@+id/food_folate_label"-->
+                <!--android:layout_alignBaseline="@+id/food_folate_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Folate"-->
+                <!--android:text="@={food.folate}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_folateUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_niacin"-->
+                <!--android:layout_toEndOf="@+id/edit_food_folate"-->
+                <!--android:layout_alignBaseline="@+id/food_folate_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Folate Units"-->
+                <!--android:text="@={food.folateUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_saturatedFat_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_folate"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Saturatedfat: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_saturatedFat"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_folate"-->
+                <!--android:layout_toEndOf="@+id/food_saturatedFat_label"-->
+                <!--android:layout_alignBaseline="@+id/food_saturatedFat_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Saturatedfat"-->
+                <!--android:text="@={food.saturatedFat}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_saturatedFatUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_folate"-->
+                <!--android:layout_toEndOf="@+id/edit_food_saturatedFat"-->
+                <!--android:layout_alignBaseline="@+id/food_saturatedFat_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Saturatedfat Units"-->
+                <!--android:text="@={food.saturatedFatUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_monounsaturatedFat_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_saturatedFat"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Monounsaturatedfat: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_monounsaturatedFat"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_saturatedFat"-->
+                <!--android:layout_toEndOf="@+id/food_monounsaturatedFat_label"-->
+                <!--android:layout_alignBaseline="@+id/food_monounsaturatedFat_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Monounsaturatedfat"-->
+                <!--android:text="@={food.monounsaturatedFat}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_monounsaturatedFatUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_saturatedFat"-->
+                <!--android:layout_toEndOf="@+id/edit_food_monounsaturatedFat"-->
+                <!--android:layout_alignBaseline="@+id/food_monounsaturatedFat_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Monounsaturatedfat Units"-->
+                <!--android:text="@={food.monounsaturatedFatUnit}"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/food_polyunsaturatedFat_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_monounsaturatedFat"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Polyunsaturatedfat: "/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_polyunsaturatedFat"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_monounsaturatedFat"-->
+                <!--android:layout_toEndOf="@+id/food_polyunsaturatedFat_label"-->
+                <!--android:layout_alignBaseline="@+id/food_polyunsaturatedFat_label"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:hint="Polyunsaturatedfat"-->
+                <!--android:text="@={food.polyunsaturatedFat}"/>-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edit_food_polyunsaturatedFatUnit"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/edit_food_monounsaturatedFat"-->
+                <!--android:layout_toEndOf="@+id/edit_food_polyunsaturatedFat"-->
+                <!--android:layout_alignBaseline="@+id/food_polyunsaturatedFat_label"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Polyunsaturatedfat Units"-->
+                <!--android:text="@={food.polyunsaturatedFatUnit}"/>-->
+
+        </RelativeLayout>
     </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/edit_food_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Food Name Placeholder"
-        android:textSize="@dimen/edit_text_size" />
-
-
-    <!--<View-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="2dip"-->
-        <!--android:background="#8b8b8b" />-->
-
-
-</LinearLayout>
+</layout>

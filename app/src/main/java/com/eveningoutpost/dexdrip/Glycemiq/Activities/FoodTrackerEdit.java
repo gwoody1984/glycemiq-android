@@ -36,6 +36,7 @@ public class FoodTrackerEdit extends AppCompatActivity {
     private final static String TAG = FoodTrackerEdit.class.getSimpleName();
 
     private Food food;
+    private boolean isNew;
     private SimpleDateFormat mFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
 
     private Button editFoodCreatedButton;
@@ -47,7 +48,7 @@ public class FoodTrackerEdit extends AppCompatActivity {
             String dateString = mFormatter.format(date);
             Log.i(TAG, "Date set to: " + dateString);
             editFoodCreated.setText(dateString);
-            food.created = date.getTime();
+           food.created = date.getTime();
         }
     };
 
@@ -84,14 +85,24 @@ public class FoodTrackerEdit extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("new", isNew);
+        setResult(Activity.RESULT_CANCELED, intent);
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_save_food || id == R.id.menu_delete_food) {
+            food.save();
             Intent intent = new Intent();
             intent.putExtra(FoodTrackerConstants.EDIT_RESULT_BUNDLE_ACTION,
                     id == R.id.menu_save_food ?
                             FoodTrackerConstants.EDIT_RESULT_ACTION_SAVE :
                             FoodTrackerConstants.EDIT_RESULT_ACTION_DELETE);
+            intent.putExtra("new", isNew);
             setResult(Activity.RESULT_OK, intent);
             finish();
 
@@ -106,7 +117,11 @@ public class FoodTrackerEdit extends AppCompatActivity {
             Long id = extras.getLong("id");
             food = Food.load(Food.class, id);
 
-            editFoodCreated.setText(mFormatter.format(food.created));
+            if (food.created != null) {
+                editFoodCreated.setText(mFormatter.format(food.created));
+            }
+
+            isNew = extras.getBoolean("new", false);
         }
     }
 

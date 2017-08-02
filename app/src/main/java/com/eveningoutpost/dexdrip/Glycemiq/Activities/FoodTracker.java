@@ -60,6 +60,24 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
             }
         });
 
+        final Button manualAddButton = (Button) findViewById(R.id.manual_add_button);
+        manualAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Food food = new Food();
+                food.save();
+
+                adapter.add(food);
+                int position = adapter.getPosition(food);
+
+                Intent intent = new Intent(FoodTracker.this, FoodTrackerEdit.class);
+                intent.putExtra("id", food.getId());
+                intent.putExtra("new", true);
+
+                startActivityForResult(intent, position);
+            }
+        });
+
         mFoodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,20 +105,33 @@ public class FoodTracker extends Activity implements NavigationDrawerFragment.Na
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult Result: " + resultCode);
         Food food = adapter.getItem(requestCode);
+        Bundle b = data.getExtras();
         if (resultCode == Activity.RESULT_OK) {
             Log.d(TAG, "onActivityResult.RESULT_OK");
-            Bundle b = data.getExtras();
             if (b != null) {
                 String action = b.getString(FoodTrackerConstants.EDIT_RESULT_BUNDLE_ACTION, FoodTrackerConstants.EDIT_RESULT_ACTION_SAVE);
-                if (action.equals(FoodTrackerConstants.EDIT_RESULT_ACTION_SAVE))
-                    food.save();
-                else if (action.equals(FoodTrackerConstants.EDIT_RESULT_ACTION_DELETE))
+                if (action.equals(FoodTrackerConstants.EDIT_RESULT_ACTION_SAVE)) {
+                    adapter.remove(food);
+                    food = Food.load(Food.class, food.getId());
+                    adapter.add(food);
+                }
+                else if (action.equals(FoodTrackerConstants.EDIT_RESULT_ACTION_DELETE)) {
                     food.delete();
+                    adapter.remove(food);
+                }
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Log.d(TAG, "onActivityResult.RESULT_CANCELED");
-            // reload changes
-            food = Food.load(Food.class, food.getId());
+            if (b.getBoolean("new", false)){
+                food.delete();
+                adapter.remove(food);
+            }
+            else {
+                // reload changes
+                adapter.remove(food);
+                food = Food.load(Food.class, food.getId());
+                adapter.add(food);
+            }
         }
         adapter.notifyDataSetChanged();
     }

@@ -46,6 +46,12 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/manual_add_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manually Add Food" />
+
             <ListView
                 android:id="@+id/food_list"
                 android:layout_width="match_parent"

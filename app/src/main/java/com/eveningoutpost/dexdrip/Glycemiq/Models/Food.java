@@ -5,6 +5,7 @@ import android.databinding.InverseBindingAdapter;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.activeandroid.Model;
@@ -421,13 +422,13 @@ public class Food extends Model {
     }
 
     @BindingAdapter("android:text")
-    public static void setText(TextView view, double value) {
+    public static void setText(EditText view, double value) {
         DecimalFormat df = new DecimalFormat("#.00");
         view.setText(df.format(value));
     }
 
     @InverseBindingAdapter(attribute = "android:text")
-    public static double getText(TextView view) {
+    public static double getText(EditText view) {
         return Double.parseDouble(view.getText().toString());
     }
 }

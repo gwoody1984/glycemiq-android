@@ -64,10 +64,11 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         String description = String.format("%s %s %s", food.quantity, food.measurement, food.name);
         viewHolder.txtFoodDescription.setText(description);
 
-        DateFormat format = new SimpleDateFormat("hh:mm a");
-        String timestamp = format.format(new Date(food.created));
-        viewHolder.txtTimestamp.setText(timestamp);
-
+        if (food.created != null) {
+            DateFormat format = new SimpleDateFormat("hh:mm a");
+            String timestamp = format.format(new Date(food.created));
+            viewHolder.txtTimestamp.setText(timestamp);
+        }
         DecimalFormat df = new DecimalFormat("#.##");
         viewHolder.txtCarbs.setText(df.format(food.carbs));
         viewHolder.txtProteins.setText(df.format(food.protein));

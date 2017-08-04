@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.eveningoutpost.dexdrip.Glycemiq.Activities.FoodTracker;
+import com.eveningoutpost.dexdrip.Glycemiq.Activities.InsulinTracker;
 import com.eveningoutpost.dexdrip.Models.BgReading;
 import com.eveningoutpost.dexdrip.Models.Calibration;
 import com.eveningoutpost.dexdrip.Tables.BgReadingTable;
@@ -83,6 +84,7 @@ public class NavDrawerBuilder {
             }
         }
         options.add("Food Tracker");
+        options.add("Insulin Tracker");
         options.add("System Status");
         options.add("Settings");
 //        options.add("Fake Numbers");
@@ -138,6 +140,7 @@ public class NavDrawerBuilder {
             }
         }
         options.add(new Intent(context, FoodTracker.class));
+        options.add(new Intent(context, InsulinTracker.class));
         options.add(new Intent(context, SystemStatus.class));
 //        options.add(new Intent(context, SettingsActivity.class));
         options.add(new Intent(context, Preferences.class));

@@ -48,7 +48,7 @@ public class FoodTrackerEdit extends AppCompatActivity {
             String dateString = mFormatter.format(date);
             Log.i(TAG, "Date set to: " + dateString);
             editFoodCreated.setText(dateString);
-           food.created = date.getTime();
+            food.created = date.getTime();
         }
     };
 

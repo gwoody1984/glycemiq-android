@@ -47,7 +47,7 @@ public class NavDrawerBuilder {
             return options;
         }
 
-        options.add("xDrip");
+        options.add("Glycemiq");
         if(is_active_sensor) {
             options.add("Calibration Graph");
         }

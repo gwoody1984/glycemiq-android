@@ -46,7 +46,7 @@ import lecho.lib.hellocharts.view.PreviewLineChartView;
 
 
 public class Home extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    private String menu_name = "xDrip";
+    private String menu_name = "Glycemiq";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private LineChartView chart;
     private PreviewLineChartView previewChart;

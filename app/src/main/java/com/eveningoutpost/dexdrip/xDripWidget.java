@@ -27,7 +27,7 @@ import java.util.List;
 public class xDripWidget extends AppWidgetProvider {
     public static RemoteViews views;
     public static Context mContext;
-    public static String TAG = "xDripWidget";
+    public static String TAG = "GlycemiqWidget";
 
 
     @Override

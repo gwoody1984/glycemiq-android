@@ -29,7 +29,7 @@
                     android:layout_width="900dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#C30909"
+                    android:textColor="#eb4957"
                     android:id="@+id/notices"
                     android:background="#07000000"
                     android:paddingEnd="10dp"

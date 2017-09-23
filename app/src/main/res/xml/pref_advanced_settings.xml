@@ -18,12 +18,12 @@
         <CheckBoxPreference
             android:key="predictive_bg"
             android:title="Display Predictive Values"
-            android:summary="Not Recommended. xDrip will attempt to predict readings each minute based on the past few values."
+            android:summary="Not Recommended. Glycemiq will attempt to predict readings each minute based on the past few values."
             android:defaultValue="false" />
         <CheckBoxPreference
             android:key="interpret_raw"
             android:title="Interpret Raw Values"
-            android:summary="If using Share, DexDrip will show values when they are normally hidden on the receiver."
+            android:summary="If using Share, Glycemiq will show values when they are normally hidden on the receiver."
             android:defaultValue="false" />
     </PreferenceCategory>
 </PreferenceScreen>

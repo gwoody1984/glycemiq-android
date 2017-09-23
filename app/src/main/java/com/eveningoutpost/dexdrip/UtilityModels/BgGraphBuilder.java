@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 
 import com.eveningoutpost.dexdrip.Models.BgReading;
+import com.eveningoutpost.dexdrip.R;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -112,7 +113,7 @@ public class BgGraphBuilder {
 
     public Line lowValuesLine() {
         Line lowValuesLine = new Line(lowValues);
-        lowValuesLine.setColor(Color.parseColor("#C30909"));
+        lowValuesLine.setColor(Color.parseColor(context.getString(R.string.LowBGColor)));
         lowValuesLine.setHasLines(false);
         lowValuesLine.setPointRadius(pointSize);
         lowValuesLine.setHasPoints(true);
@@ -161,7 +162,7 @@ public class BgGraphBuilder {
         Line highLine = new Line(highLineValues);
         highLine.setHasPoints(false);
         highLine.setStrokeWidth(1);
-        highLine.setColor(Utils.COLOR_ORANGE);
+        highLine.setColor(Color.parseColor(context.getString(R.string.LowBGColor)));
         return highLine;
     }
 
@@ -172,7 +173,7 @@ public class BgGraphBuilder {
         Line lowLine = new Line(lowLineValues);
         lowLine.setHasPoints(false);
         lowLine.setAreaTransparency(50);
-        lowLine.setColor(Color.parseColor("#C30909"));
+        lowLine.setColor(Color.parseColor(context.getString(R.string.LowBGColor)));
         lowLine.setStrokeWidth(1);
         lowLine.setFilled(true);
         return lowLine;

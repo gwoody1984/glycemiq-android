@@ -37,6 +37,8 @@
     <string name="title_activity_usb_connected">UsbConnectedActivity</string>
     <string name="title_save_food">Save Food</string>
     <string name="title_delete_food">Delete Food</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
 
     <string-array name="menu_options">
         <item>Dex Drip</item>

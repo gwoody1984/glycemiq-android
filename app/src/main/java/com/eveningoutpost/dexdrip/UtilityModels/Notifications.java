@@ -185,7 +185,7 @@ public class Notifications {
 
     public static NotificationCompat.Builder notificationBuilder(String title, String content, Intent intent) {
         return new NotificationCompat.Builder(mContext)
-                .setSmallIcon(R.drawable.ic_action_communication_invert_colors_on)
+                .setSmallIcon(R.drawable.ic_glycemiq_notification)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setContentIntent(notificationIntent(intent));

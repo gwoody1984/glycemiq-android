@@ -49,9 +49,9 @@ public class ForegroundServiceStarter {
         b.setPriority(Notification.PRIORITY_MIN);
         // Don't show this notification on the lock screen on L+
         b.setVisibility(Notification.VISIBILITY_SECRET);
-        b.setContentTitle("xDrip is Running")
-                .setContentText("xDrip Data collection service is running.")
-                .setSmallIcon(R.drawable.ic_action_communication_invert_colors_on);
+        b.setContentTitle("Glycemiq is Running")
+                .setContentText("Glycemiq Data collection service is running.")
+                .setSmallIcon(R.drawable.ic_glycemiq_notification);
         b.setContentIntent(resultPendingIntent);
         return(b.build());
     }

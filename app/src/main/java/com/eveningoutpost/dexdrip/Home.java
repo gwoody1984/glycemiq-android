@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eveningoutpost.dexdrip.Glycemiq.Activities.LoginActivity;
 import com.eveningoutpost.dexdrip.Models.ActiveBluetoothDevice;
 import com.eveningoutpost.dexdrip.Models.BgReading;
 import com.eveningoutpost.dexdrip.Models.Calibration;
@@ -37,6 +38,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import lecho.lib.hellocharts.ViewportChangeListener;
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -46,6 +48,9 @@ import lecho.lib.hellocharts.view.PreviewLineChartView;
 
 
 public class Home extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+    private static final int REQUEST_LOGIN = 0;
+    private static final int REQUEST_EULA = 1;
+
     private String menu_name = "Glycemiq";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private LineChartView chart;
@@ -76,8 +81,17 @@ public class Home extends Activity implements NavigationDrawerFragment.Navigatio
         PreferenceManager.setDefaultValues(this, R.xml.pref_notifications, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_data_source, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        checkEula();
+        checkLogin();
+
         setContentView(R.layout.activity_home);
+    }
+
+    public void checkLogin(){
+        String email = prefs.getString("user_id", "");
+        if (Objects.equals(email, "")){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivityForResult(intent, REQUEST_LOGIN);
+        }
     }
 
     public void checkEula() {
@@ -90,9 +104,17 @@ public class Home extends Activity implements NavigationDrawerFragment.Navigatio
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_LOGIN && resultCode == RESULT_OK){
+            checkEula();
+        }
+    }
+
+    @Override
     protected void onResume(){
         super.onResume();
-        checkEula();
         _broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context ctx, Intent intent) {
@@ -365,7 +387,7 @@ public class Home extends Activity implements NavigationDrawerFragment.Navigatio
                     n.setContentTitle("Export complete");
                     n.setContentText("Ready to be sent.");
                     n.setAutoCancel(true);
-                    n.setSmallIcon(R.drawable.ic_action_communication_invert_colors_on);
+                    n.setSmallIcon(R.drawable.ic_glycemiq_notification);
                     ShareNotification.viewOrShare("application/octet-stream", Uri.fromFile(new File(filename)), n, ctx);
 
                     final NotificationManager manager = (NotificationManager) ctx.getSystemService(Service.NOTIFICATION_SERVICE);

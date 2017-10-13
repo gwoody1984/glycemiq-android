@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Glycemiq API Settings -->
+    <string name="glycemiq_api_register">http://10.0.2.2:5000/api/register</string>
+    <string name="glycemiq_api_login">http://10.0.2.2:5000/api/login</string>
+    <string name="glycemiq_api_food">http://10.0.2.2:5000/api/food</string>
+    <string name="glycemiq_api_insulin">http://10.0.2.2:5000/api/insulin</string>
+    <string name="glycemiq_api_glucose">http://10.0.2.2:5000/api/glucose</string>
+</resources>

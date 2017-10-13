@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="glycemiq_primary_red">#eb4957</color>
+    <color name="glycemiq_secondary_red">#eb5168</color>
+    <color name="glycemiq_tertiary_red">#b33b4b</color>
+    <color name="glycemiq_purple">#853660</color>
+    <color name="glycemiq_gray">#494949</color>
+    <color name="white">#fff</color>
+</resources>
